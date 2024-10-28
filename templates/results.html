@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Summaries</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Summarized Documents</h1>
+
+    <div class="summaries-container">
+        {% for summary in summary %}
+            <div class="summary-container">
+                <h3>Summary of Documents {{ summary.doc_ids | join(', ') }}</h3>
+                <p>{{ summary.summary_text }}</p>
+            </div>
+        {% endfor %}
+    </div>
+    <a href="/">Upload another document</a>
+</body>
+</html>

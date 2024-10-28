@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Upload Documents</title>
+    <script>
+        function togglePercentageInput() {
+            const clusteringCheckbox = document.getElementById('clusterDocuments');
+            const percentageInput = document.getElementById('percentageInput');
+            percentageInput.style.display = clusteringCheckbox.checked ? 'block' : 'none';
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+    <h1>Documents Summarizer</h1>
+    <form action="/" method="post" enctype="multipart/form-data">
+        <label>Upload your .txt files:</label>
+        <input type="file" name="files" multiple accept=".txt" required>
+        <br><br>
+
+        <label for="max_length">Maximum length of the summary:</label>
+        <input type="number" id="max_length" name="max_length" required min="1">
+        <br><br>
+        
+        <label for="min_length">Minimum Length of the summary:</label>
+        <input type="number" id="min_length" name="min_length" required min="1">
+        <br><br>
+
+        <label for="clusterDocuments"> Want to cluster similar documents?
+            <input type="checkbox" id="clusterDocuments" name="clusterDocuments" onchange="togglePercentageInput()">
+        </label>
+        <br><br>
+        <div id="percentageInput" style="display: none;">
+            <label for="percentage">How similar should the clustered documents be?(Percentage):
+            <input type="number" id="percentage" name="percentage" min="0" max="100" step="1">%</label>
+        </div>
+        <br>
+
+        <input type="submit" value="Upload">
+    </form>
+    </div>
+</body>
+</html>
